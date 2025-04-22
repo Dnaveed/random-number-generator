@@ -5,10 +5,12 @@ function App() {
   const [randomNumber, setRandomNumber] = useState(null);
   const [min, setMin] = useState(1);
   const [max, setMax] = useState(100);
+  const [history, setHistory] = useState([]);
 
   const generateNumber = () => {
     const newNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     setRandomNumber(newNumber);
+    setHistory([...history, { number: newNumber, timestamp: new Date() }]);
   };
 
   return (
@@ -39,6 +41,18 @@ function App() {
             <h2>Your random number is:</h2>
             <p className="number">{randomNumber}</p>
             <p className="range-info">(between {min} and {max})</p>
+          </div>
+        )}
+        {history.length > 0 && (
+          <div className="history">
+            <h3>History</h3>
+            <ul>
+              {history.map((item, index) => (
+                <li key={index}>
+                  {item.number} - {item.timestamp.toLocaleTimeString()}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </header>
