@@ -38,6 +38,7 @@ function App() {
           <div className="result">
             <h2>Your random number is:</h2>
             <p className="number">{randomNumber}</p>
+            <p className="range-info">(between {min} and {max})</p>
           </div>
         )}
       </header>
